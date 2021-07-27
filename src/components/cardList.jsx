@@ -2,13 +2,14 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import useFetch from '../utils/useFetch';
 import Card from './card';
-
+import Loading from './loading';
 const CardList = () => {
   const [pageNum, setPageNum] = useState(1);
-  const { list, hasMore } = useFetch(pageNum);
+  const { list, hasMore, isLoading } = useFetch(pageNum);
   const observerRef = useRef();
 
   const observer = (node) => {
+    if (isLoading) return;
     if (observerRef.current) observerRef.current.disconnect();
 
     observerRef.current = new IntersectionObserver(([entry]) => {
@@ -26,6 +27,7 @@ const CardList = () => {
         <Card key={card.id} {...{ card }} />
       ))}
       <div ref={observer} ref={observer} />
+      <>{isLoading && <Loading />}</>
     </CardListContainer>
   );
 };
