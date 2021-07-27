@@ -26,7 +26,7 @@ const CardList = () => {
       {list?.map((card) => (
         <Card key={card.id} {...{ card }} />
       ))}
-      <div ref={observer} ref={observer} />
+      <div ref={observer} />
       <>{isLoading && <Loading />}</>
     </CardListContainer>
   );
