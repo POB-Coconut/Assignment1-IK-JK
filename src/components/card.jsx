@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { CARD } from '../utils/const';
 const Card = ({ ...card }) => {
-  const { name, email, body } = card.card;
+  const { postId, email, body } = card.card;
   return (
     <CardContainer>
       <CardCommentId>
         <Title>{CARD.USER_ID}</Title>
-        <Contents>{name}</Contents>
+        <Contents>{postId}</Contents>
       </CardCommentId>
       <CardEmail>
         <Title>{CARD.EMAIL}</Title>
