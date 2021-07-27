@@ -1,8 +1,8 @@
 const END_POINT = 'https://jsonplaceholder.typicode.com/comments';
 
-const request = async () => {
+const request = async (page) => {
   try {
-    const res = await fetch(END_POINT);
+    const res = await fetch(`${END_POINT}?_page=${page}&_limit=10`);
     const data = await res.json();
     if (!res.ok) {
       throw new Error();

@@ -1,20 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import request from '../data/api';
+import useFetch from '../utils/useFetch';
 import Card from './card';
+import Loading from './loading';
 const CardList = () => {
-  const [cardData, setCardData] = useState();
+  const [pageNum, setPageNum] = useState(1);
+  const { list, hasMore, isLoading } = useFetch(pageNum);
+  const observerRef = useRef();
 
-  useEffect(() => {
-    const fetchData = request();
-    fetchData.then((res) => setCardData(res));
-  }, []);
+  const observer = (node) => {
+    if (isLoading) return;
+    if (observerRef.current) observerRef.current.disconnect();
+
+    observerRef.current = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && hasMore) {
+        setPageNum((page) => page + 1);
+      }
+    });
+
+    node && observerRef.current.observe(node);
+  };
 
   return (
     <CardListContainer>
-      {cardData?.map((card) => (
+      {list?.map((card) => (
         <Card key={card.id} {...{ card }} />
       ))}
+      <div ref={observer} />
+      <>{isLoading && <Loading />}</>
     </CardListContainer>
   );
 };
