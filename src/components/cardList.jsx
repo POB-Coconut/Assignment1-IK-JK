@@ -1,33 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import request from '../data/api';
+import useFetch from '../utils/useFetch';
 import Card from './card';
-import { useInfiniteScroll } from './infiniteScrollList';
 
 const CardList = () => {
-  const [cardData, setCardData] = useState();
-  const [target, setTarget] = useState(null);
-  const page = 1;
-  const loadData = (page) => {
-    const fetchData = request(page);
-    fetchData.then((res) => setCardData(res));
-  };
-  const loadMoreData = () => {
-    page += 1;
-    const fetchData = request(page);
-    fetchData.then((res) => setCardData(res));
-  };
+  const [pageNum, setPageNum] = useState(1);
+  const { list, hasMore } = useFetch(pageNum);
+  const observerRef = useRef();
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  const observer = (node) => {
+    if (observerRef.current) observerRef.current.disconnect();
+
+    observerRef.current = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && hasMore) {
+        setPageNum((page) => page + 1);
+      }
+    });
+
+    node && observerRef.current.observe(node);
+  };
 
   return (
     <CardListContainer>
-      {cardData?.map((card) => (
+      {list?.map((card) => (
         <Card key={card.id} {...{ card }} />
       ))}
-      <div ref={setTarget}></div>
+      <div ref={observer} ref={observer} />
     </CardListContainer>
   );
 };

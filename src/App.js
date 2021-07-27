@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import GlobalStyles from './GlobalStyles';
+import GlobalStyles from './styles/GlobalStyles';
 import CardList from './components/cardList';
 
 function App() {
