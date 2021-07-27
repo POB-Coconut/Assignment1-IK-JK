@@ -1,17 +1,18 @@
-import Card from "./components/card";
-import GlobalStyles from "./GlobalStyles";
-import styled from "styled-components";
+import styled from 'styled-components';
+import GlobalStyles from './GlobalStyles';
+import CardList from './components/cardList';
+
 function App() {
-	return (
-		<AppDiv>
-			<GlobalStyles />
-			<Card />
-		</AppDiv>
-	);
+  return (
+    <AppDiv>
+      <GlobalStyles />
+      <CardList />
+    </AppDiv>
+  );
 }
 
 export default App;
 const AppDiv = styled.div`
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 `;
