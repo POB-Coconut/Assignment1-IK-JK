@@ -1,19 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CARD } from '../utils/const';
 const Card = ({ ...card }) => {
   const { name, email, body } = card.card;
   return (
     <CardContainer>
       <CardCommentId>
-        <Title>Comment Id</Title>
+        <Title>{CARD.USER_ID}</Title>
         <Contents>{name}</Contents>
       </CardCommentId>
       <CardEmail>
-        <Title>Email</Title>
+        <Title>{CARD.EMAIL}</Title>
         <Contents>{email}</Contents>
       </CardEmail>
       <CardComment>
-        <Title>Comment</Title>
+        <Title>{CARD.COMMENT}</Title>
         <Contents>{body}</Contents>
       </CardComment>
     </CardContainer>
