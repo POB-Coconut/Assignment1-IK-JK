@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { PAGE, END_POINT } from '../utils/const';
 
-const END_POINT = 'https://jsonplaceholder.typicode.com/comments';
 const useFetch = (page) => {
   const [list, setList] = useState([]);
   const [hasMore, setHasMore] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  //재사용
   const sendQuery = useCallback(async () => {
-    const URL = `${END_POINT}?_page=${page}&_limit=10`;
+    const URL = `${END_POINT}${PAGE.COMMENT}?_page=${page}&_limit=${PAGE.LIMIT}`;
     try {
       setIsLoading(true);
 

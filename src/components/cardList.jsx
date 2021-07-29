@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import useFetch from '../utils/useFetch';
+import useFetch from '../hooks/useFetch';
 import Card from './card';
 import Loading from './loading';
 const CardList = () => {
