@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { PAGE, END_POINT } from '../utils/const';
 
 const useFetch = (page) => {

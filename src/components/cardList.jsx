@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+import 'intersection-observer';
 import useFetch from 'hooks/useFetch';
 import Card from 'components/card';
 import Loading from 'components/loading';
+
 const CardList = () => {
   const [pageNum, setPageNum] = useState(1);
   const { list, hasMore, isLoading } = useFetch(pageNum);
