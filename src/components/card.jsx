@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CARD } from '../utils/const';
+import { CARD } from 'utils/const';
 
 const Card = ({ ...card }) => {
   const { postId, email, body } = card.card;

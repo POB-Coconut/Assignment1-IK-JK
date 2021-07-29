@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import useFetch from '../hooks/useFetch';
-import Card from './card';
-import Loading from './loading';
+import useFetch from 'hooks/useFetch';
+import Card from 'components/card';
+import Loading from 'components/loading';
 const CardList = () => {
   const [pageNum, setPageNum] = useState(1);
   const { list, hasMore, isLoading } = useFetch(pageNum);
